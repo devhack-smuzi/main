@@ -62,7 +62,8 @@ module.exports = {
       remotes: {},
       exposes: {
         './Header': './src/components/Header/Header',
-        './Sidebar': './src/components/Sidebar/Sidebar'
+        './Sidebar': './src/components/Sidebar/Sidebar',
+        './Bundle': './src/components/Bundle/Bundle'
       },
       shared: {
         ...deps,
