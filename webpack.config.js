@@ -1,6 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require('webpack');
+const path = require("path");
 
 const deps = require("./package.json").dependencies;
 
@@ -20,10 +22,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts",".tsx", ".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".json", ".css", ".styl"],
     alias: {
-      components: path.resolve(__dirname, 'src/components')
-    }
+      components: path.resolve(__dirname, "src/components"),
+      public: path.resolve(__dirname, "public"),
+    },
   },
 
   module: {
@@ -35,11 +38,20 @@ module.exports = {
           fullySpecified: false,
         },
       },
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      { test: /\.tsx?$/, loader: "ts-loader" },
+      {
+        test: /\.(png|jpe?g|gif|jp2|webp)$/,
+        loader: "file-loader",
+      },
       {
         test: /\.css$/,
-        loader: "css-loader"
-      },
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader"
+          },
+        ],
+      }
     ],
   },
 
@@ -48,8 +60,7 @@ module.exports = {
       name: "main",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {
-      },
+      exposes: {},
       shared: {
         react: {
           singleton: true,
@@ -67,5 +78,18 @@ module.exports = {
       template: "./src/index.html",
       chunks: ["main"],
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    open: true,
+    compress: true,
+    hot: true,
+    port: 3005,
+  },
 };
