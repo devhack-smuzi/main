@@ -57,7 +57,7 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "mf4-navigation",
+      name: "mf4Navigation",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
