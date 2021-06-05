@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import { Header as AntdHeader } from "antd/lib/layout/layout";
 import { Menu } from "antd";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo1.svg";
 import Search from "antd/lib/input/Search";
+import "./Header.css";
 
 export const Header: FC = (props) => {
   const onSearch = (value: any) => console.log(value);
 
   return (
-    <AntdHeader style={{ backgroundColor: "#323242", width: "100%" }}>
+    <AntdHeader className="header">
       <Menu
         style={{ backgroundColor: "#323242", color: "white" }}
         mode="horizontal"

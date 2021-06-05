@@ -40,7 +40,7 @@ module.exports = {
       },
       { test: /\.tsx?$/, loader: "ts-loader" },
       {
-        test: /\.(png|jpe?g|gif|jp2|webp)$/,
+        test: /\.(png|jpe?g|gif|jp2|webp|svg)$/,
         loader: "file-loader",
       },
       {
@@ -57,7 +57,7 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "main",
+      name: "mf4-navigation",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
