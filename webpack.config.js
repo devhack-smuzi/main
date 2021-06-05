@@ -1,9 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require('webpack');
-const path = require("path");
+const { HotModuleReplacementPlugin } = require("webpack");
 
+const path = require("path");
 const deps = require("./package.json").dependencies;
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json", ".css", ".styl"],
+    extensions: [".ts", ".tsx", ".js", ".json", ".css",],
     alias: {
       components: path.resolve(__dirname, "src/components"),
       public: path.resolve(__dirname, "public"),
@@ -60,19 +60,24 @@ module.exports = {
       name: "main",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        './Header': './src/components/Header/Header',
+        './Sidebar': './src/components/Sidebar/Sidebar'
+      },
       shared: {
-        react: {
-          singleton: true,
+        ...deps,
+        "react": {
           eager: true,
-          requiredVersion: deps.react,
+          singleton: true
         },
         "react-dom": {
           singleton: true,
-          eager: true,
-          requiredVersion: deps["react-dom"],
+          eager: true
         },
-      },
+        "antd": {
+          eager: true
+        }
+      }
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
@@ -82,7 +87,7 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
   ],
   devServer: {
     historyApiFallback: true,
