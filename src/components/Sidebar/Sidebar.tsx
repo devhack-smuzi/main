@@ -1,41 +1,39 @@
-import { Button, Menu, Space } from "antd";
-import Avatar from "antd/lib/avatar/avatar";
-import Layout, { Content } from "antd/lib/layout/layout";
-import Sider from "antd/lib/layout/Sider";
-import React, { FC } from "react";
-import { SettingOutlined, MailOutlined } from "@ant-design/icons";
+import { Button, Menu, Space } from 'antd';
+import { Avatar, Layout } from 'antd';
+import React, { FC } from 'react';
+import SettingOutlined from '@ant-design/icons/SettingOutlined';
+import MailOutlined from '@ant-design/icons/MailOutlined';
 
-export type SidebarPropsType = {};
+const { Sider, Content } = Layout;
 
-export const Sidebar: FC<SidebarPropsType> = (props) => {
+const Sidebar = () => {
   return (
     <Content>
       <Layout>
-        <Sider width={200} style={{ height: "100vh" }}>
+        <Sider width={200} style={{ height: '100vh' }}>
           <Menu
             mode="inline"
             style={{
-              height: "100%",
+              height: '100%',
               borderRight: 0,
-              backgroundColor: "#323242",
-              color: "white",
-            }}
-          >
-            <Menu.Item key="1" style={{ height: "14vh", alignItems: "center" }}>
+              backgroundColor: '#323242',
+              color: 'white',
+            }}>
+            <Menu.Item key="1" style={{ height: '14vh', alignItems: 'center' }}>
               <Space direction="horizontal">
                 <Avatar
                   size={64}
                   src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  style={{ display: "block", border: "3px solid white" }}
+                  style={{ display: 'block', border: '3px solid white' }}
                 />
                 <Button
                   shape="circle"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: 'white' }}
                   icon={<SettingOutlined />}
                 />
                 <Button
                   shape="circle"
-                  style={{ backgroundColor: "white" }}
+                  style={{ backgroundColor: 'white' }}
                   icon={<MailOutlined />}
                 />
               </Space>
@@ -50,3 +48,5 @@ export const Sidebar: FC<SidebarPropsType> = (props) => {
     </Content>
   );
 };
+
+export default Sidebar;

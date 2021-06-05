@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { HotModuleReplacementPlugin } = require("webpack");
+const webpack = require("webpack");
 
 const path = require("path");
 const deps = require("./package.json").dependencies;
@@ -57,7 +57,7 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "mf4-navigation",
+      name: "mf4Navigation",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
@@ -83,11 +83,11 @@ module.exports = {
       template: "./src/index.html",
       chunks: ["main"],
     }),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru|en-gb/),
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
-    }),
-    new HotModuleReplacementPlugin(),
+    })
   ],
   devServer: {
     historyApiFallback: true,

@@ -1,7 +1,9 @@
-import Layout from "antd/lib/layout/layout";
-import { Header, Sidebar } from "components";
+import { Layout } from 'antd';
 
-import React from "react";
+import Header from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
+
+import React from 'react';
 
 const App = () => {
   return (
