@@ -1,10 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
 
+const webpack = require('webpack');
 const path = require('path');
+
 const deps = require('./package.json').dependencies;
+const env = process.env.NODE_ENV || 'development';
 
 module.exports = {
   entry: './src/index',
@@ -18,7 +20,7 @@ module.exports = {
   },
 
   output: {
-    publicPath: '/navigation/',
+    publicPath: env === 'production' ? '/navigation/' : 'auto',
   },
 
   resolve: {
