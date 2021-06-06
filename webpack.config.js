@@ -20,7 +20,7 @@ module.exports = {
   },
 
   output: {
-    publicPath: env === 'production' ? '/navigation/' : 'auto',
+    publicPath: env === 'production' ? '/widget/navigation/' : 'auto',
   },
 
   resolve: {
