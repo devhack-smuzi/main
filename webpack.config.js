@@ -54,6 +54,24 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                modifyVars: {
+                  'menu-highlight-color': '#464655',
+                },
+                javascriptEnabled: true
+              }
+            }
+          }
+        ]
+      }
     ],
   },
 
