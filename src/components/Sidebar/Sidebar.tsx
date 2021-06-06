@@ -48,9 +48,9 @@ const Sidebar = ({ onChange }: Props) => {
           </Space>
         </Menu.Item>
         <Menu.Item key="cards">Карты</Menu.Item>
-        <Menu.Item key="account">Вклады и счета</Menu.Item>
-        <Menu.Item key="credits">Кредиты</Menu.Item>
-        <Menu.Item key="invest">Инвестиции</Menu.Item>
+        <Menu.Item key="list">Выписка</Menu.Item>
+        <Menu.Item key="services">Услуги</Menu.Item>
+        <Menu.Item key="create-payment">Новый платеж</Menu.Item>
       </Menu>
     </Sider>
   );
