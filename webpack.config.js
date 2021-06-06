@@ -18,7 +18,7 @@ module.exports = {
   },
 
   output: {
-    publicPath: "http://localhost:3005/",
+    publicPath: "http://localhost:5004/",
   },
 
   resolve: {
@@ -96,6 +96,6 @@ module.exports = {
     open: true,
     compress: true,
     hot: true,
-    port: 3005,
+    port: 5004,
   },
 };
