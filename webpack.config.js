@@ -18,7 +18,7 @@ module.exports = {
   },
 
   output: {
-    publicPath: 'auto',
+    publicPath: '/navigation/',
   },
 
   resolve: {
