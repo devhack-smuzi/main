@@ -18,7 +18,7 @@ module.exports = {
   },
 
   output: {
-    publicPath: '/navigation/',
+    publicPath: '/widget/navigation/',
   },
 
   resolve: {
